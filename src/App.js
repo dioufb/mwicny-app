@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { ConfirmSignIn, ConfirmSignUp, ForgotPassword, RequireNewPassword, SignIn, SignUp, VerifyContact, withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import { ConfirmSignIn, ConfirmSignUp, ForgotPassword, RequireNewPassword, SignIn, SignUp, VerifyContact } from 'aws-amplify-react';
+
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
@@ -33,6 +35,7 @@ class App extends Component {
 export default withAuthenticator(App, false, [
   <ConfirmSignIn/>,
   <VerifyContact/>,
+  <SignIn/>,
   <SignUp/>,
   <ConfirmSignUp/>,
   <ForgotPassword/>,
