@@ -2,18 +2,6 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"8.3.1\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
-    "REDIRECTURL": {
-      "Type": "String",
-      "Default": ""
-    },
-    "EMAILMESSAGE": {
-      "Type": "String",
-      "Default": ""
-    },
-    "EMAILSUBJECT": {
-      "Type": "String",
-      "Default": ""
-    },
     "modules": {
       "Type": "String",
       "Default": "",
@@ -75,12 +63,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "mwicnyappCustomMessage",
+            "mwicnyappPostAuthentication",
             {
               "Fn::Join": [
                 "",
                 [
-                  "mwicnyappCustomMessage",
+                  "mwicnyappPostAuthentication",
                   "-",
                   {
                     "Ref": "env"
@@ -100,18 +88,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "REDIRECTURL": {
-              "Ref": "REDIRECTURL"
-            },
-            "EMAILSUBJECT": {
-              "Ref": "EMAILSUBJECT"
-            },
-            "EMAILMESSAGE": {
-              "Ref": "EMAILMESSAGE"
-            },
-            "RESOURCENAME": {
-              "Ref": "resourceName"
             }
           }
         },
@@ -139,12 +115,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "mwicnyappCustomMessage",
+            "mwicnyappPostAuthentication",
             {
               "Fn::Join": [
                 "",
                 [
-                  "mwicnyappCustomMessage",
+                  "mwicnyappPostAuthentication",
                   "-",
                   {
                     "Ref": "env"
