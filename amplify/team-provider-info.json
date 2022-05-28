@@ -14,7 +14,27 @@
     "categories": {
       "auth": {
         "cognitocf0c6096": {},
-        "mwicnyapp": {}
+        "mwicnyapp": {
+          "facebookAppId": "1080819966186426"
+        }
+      },
+      "function": {
+        "mwicnyappCustomMessage": {
+          "REDIRECTURL": "https://master.dhlzdrcas476g.amplifyapp.com/home",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-authcra-devf-15427-deployment",
+          "s3Key": "amplify-builds/mwicnyappCustomMessage-666b4453572b54433932-build.zip"
+        },
+        "mwicnyappPostConfirmation": {
+          "GROUP": "Members",
+          "deploymentBucketName": "amplify-authcra-devf-15427-deployment",
+          "s3Key": "amplify-builds/mwicnyappPostConfirmation-336443324171374f5964-build.zip"
+        },
+        "AdminQueries6bdccc42": {
+          "deploymentBucketName": "amplify-authcra-devf-15427-deployment",
+          "s3Key": "amplify-builds/AdminQueries6bdccc42-65445a736d53717a5756-build.zip"
+        }
       }
     }
   }

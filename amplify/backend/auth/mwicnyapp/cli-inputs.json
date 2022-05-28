@@ -32,27 +32,93 @@
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [],
-    "userpoolClientReadAttributes": [],
+    "userpoolClientWriteAttributes": [
+      "phone_number",
+      "email",
+      "family_name",
+      "given_name"
+    ],
+    "userpoolClientReadAttributes": [
+      "email",
+      "family_name",
+      "given_name",
+      "phone_number"
+    ],
     "userpoolClientLambdaRole": "mwicny8a6dd21d_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "8a6dd21d",
     "resourceName": "mwicnyapp",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
     "useDefault": "manual",
-    "userPoolGroups": false,
-    "userPoolGroupList": [],
-    "adminQueries": false,
-    "thirdPartyAuth": false,
-    "authProviders": [],
+    "userPoolGroups": true,
+    "userPoolGroupList": [
+      "Members",
+      "Teachers",
+      "Admins",
+      "SuperAdmins"
+    ],
+    "adminQueries": true,
+    "thirdPartyAuth": true,
+    "authProviders": [
+      "graph.facebook.com"
+    ],
     "hostedUI": true,
-    "hostedUIDomainName": "b7t9y12hkg3n",
+    "hostedUIDomainName": "mwicnyapp",
     "authProvidersUserPool": [
       "Facebook"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"given_name\":\"first_name\",\"family_name\":\"last_name\",\"username\":\"id\"}}]",
+    "useEnabledMfas": false,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": false,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "mwicnyappCustomMessage",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "mwicnyappPostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "triggers": {
+      "CustomMessage": [
+        "verification-link"
+      ],
+      "PostConfirmation": [
+        "add-to-group"
+      ]
+    },
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://master.dhlzdrcas476g.amplifyapp.com/home\"],\"LogoutURLs\":[\"https://master.dhlzdrcas476g.amplifyapp.com/signout\"]}",
-    "useEnabledMfas": false
+    "adminQueryGroup": "SuperAdmins",
+    "verificationBucketName": "mwicnyappverificationbucket",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": [
+      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
+    ]
   }
 }
