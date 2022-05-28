@@ -1,4 +1,5 @@
 import { Image, useTheme } from "@aws-amplify/ui-react";
+import logo from '../images/mwic.png';
 
 export function Header() {
     const { tokens } = useTheme();
@@ -6,7 +7,7 @@ export function Header() {
     return (
       <Image
         alt="logo"
-        src="../images/mwic.png"
+        src={logo}
         padding={tokens.space.medium}
       />
     );
