@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "mwicny8a6dd21d",
     "userPoolName": "mwicnyapp",
     "autoVerifiedAttributes": [
@@ -111,7 +111,6 @@
         "add-to-group"
       ]
     },
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://master.dhlzdrcas476g.amplifyapp.com/home\"],\"LogoutURLs\":[\"https://master.dhlzdrcas476g.amplifyapp.com/signout\"]}",
     "adminQueryGroup": "SuperAdmins",
     "verificationBucketName": "mwicnyappverificationbucket",
     "parentStack": {
@@ -119,6 +118,11 @@
     },
     "permissions": [
       "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
-    ]
+    ],
+    "authTriggerConnections": [
+      "{\"triggerType\":\"CustomMessage\",\"lambdaFunctionName\":\"mwicnyappCustomMessage\"}",
+      "{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"mwicnyappPostConfirmation\"}"
+    ],
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://master.dhlzdrcas476g.amplifyapp.com/home\"],\"LogoutURLs\":[\"https://master.dhlzdrcas476g.amplifyapp.com/signout\"]}"
   }
 }
