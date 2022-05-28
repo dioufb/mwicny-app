@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Header } from "./logincomponents/Header";
 import { Footer } from "./logincomponents/Footer";
@@ -9,6 +9,7 @@ import { SignInFooter } from "./logincomponents/SignInFooter";
 import './App.css';
 
 import { withAuthenticator } from "@aws-amplify/ui-react";
+
 import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
