@@ -32,7 +32,8 @@
         "signupAttributes": [
           "EMAIL",
           "GIVEN_NAME",
-          "FAMILY_NAME"
+          "FAMILY_NAME",
+          "PHONE_NUMBER"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
