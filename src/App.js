@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+
+import { Header } from "./logincomponents/Header";
+import { Footer } from "./logincomponents/Footer";
+import { SignInHeader } from "./logincomponents/SignInHeader";
+import { SignInFooter } from "./logincomponents/SignInFooter";
+
 import logo from './logo.svg';
 import './App.css';
-import { ConfirmSignIn, ConfirmSignUp, ForgotPassword, RequireNewPassword, SignIn, SignUp, VerifyContact } from 'aws-amplify-react';
 
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import Amplify from 'aws-amplify';
@@ -32,12 +37,13 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, false, [
-  <ConfirmSignIn/>,
-  <VerifyContact/>,
-  <SignIn/>,
-  <SignUp/>,
-  <ConfirmSignUp/>,
-  <ForgotPassword/>,
-  <RequireNewPassword />
-]);
+export default withAuthenticator(App, {
+  components: {
+    Header,
+    SignIn: {
+      Header: SignInHeader,
+      Footer: SignInFooter
+    },
+    Footer
+  }
+});
