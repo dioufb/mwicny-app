@@ -164,6 +164,51 @@ export const onDeleteScreens = /* GraphQL */ `
     }
   }
 `;
+export const onCreateCurrentPlayList = /* GraphQL */ `
+  subscription OnCreateCurrentPlayList {
+    onCreateCurrentPlayList {
+      id
+      playlist
+      assests
+      audittrail
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateCurrentPlayList = /* GraphQL */ `
+  subscription OnUpdateCurrentPlayList {
+    onUpdateCurrentPlayList {
+      id
+      playlist
+      assests
+      audittrail
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteCurrentPlayList = /* GraphQL */ `
+  subscription OnDeleteCurrentPlayList {
+    onDeleteCurrentPlayList {
+      id
+      playlist
+      assests
+      audittrail
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreatePlaylists = /* GraphQL */ `
   subscription OnCreatePlaylists {
     onCreatePlaylists {

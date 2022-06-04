@@ -8,8 +8,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { API, Storage, Auth } from 'aws-amplify';
 import { AmplifyS3Image,AmplifyS3ImagePicker } from "@aws-amplify/ui-react/legacy";
-import {listAssetss,listPlaylistss,getAssets} from '../graphql/queries.ts'
-import { createAssets,updateAssets,deleteAssets,createPlaylists,updatePlaylists,deletePlaylists,createPlaylistsAssets } from '../graphql/mutations.ts';
+import {listAssetss,listPlaylistss,getAssets,listCurrentPlayLists,getPlayLists} from '../graphql/queries.ts'
+import { createAssets,updateAssets,deleteAssets,createPlaylists,updatePlaylists,deletePlaylists,createPlaylistsAssets,createCurrentPlayList,updateCurrentPlayList } from '../graphql/mutations.ts';
 
 
 // import '../styles.scss';
@@ -34,11 +34,13 @@ export function PlayListManager() {
     const [collapsedRows,setCollapsedRows] = useState({});
     const [currentPlayList,setCurrentPlayList] = useState();
     const [selectedImages,setSelectedImages]=useState();
+    const [currentlyConfiguredPlayList,setCurrentlyConfiguredPlayList]=useState();
 
     // let fileInput;
     useEffect(() => {
         getPlayLists();
         getAllAssets();
+        getCurrentlyConfiguredPlayList();
     }, []);    
 
     async function getPlayLists() {       
@@ -77,7 +79,13 @@ export function PlayListManager() {
         setAssets(apiData.data.listAssetss.items.filter(item => item._deleted !== true).
                     sort((a, b) => a._lastChangedAt < b._lastChangedAt ? 1 : -1));
     }
-  
+    //listCurrentPlayLists
+    async function getCurrentlyConfiguredPlayList() {       
+        const apiData = await API.graphql({ query:  listCurrentPlayLists});
+        console.log('Set Current Screen Config',apiData);
+
+        setCurrentlyConfiguredPlayList(apiData.data.listCurrentPlayLists.items[0]);
+    }    
     const padRightStyle = {
         paddingRight: "15px"
     };
@@ -221,7 +229,48 @@ export function PlayListManager() {
             _id=e.target.parentNode.id.split("_").slice(-1) ; 
             classNames = e.target.parentNode.className;
         }
+        let pl = await API.graphql({ query: createCurrentPlayList, variables: { input: {
+            playlist:'default',
+            assests: "{}",
+            audittrail:`{"created":"${new Date().toUTCString()}","createdby":"${(await Auth.currentUserInfo()).attributes.email}"}`} 
+            } 
+        }); 
         setCurrentPlayList(_id[0]);
+    }
+    const makeCurrentPlayList = async e => {
+        let _id ;
+        if (e.target.id) { 
+            _id=e.target.id.split("_").slice(-1);
+        } else {
+            _id=e.target.parentNode.id.split("_").slice(-1) ; 
+        }  
+        let pls = playlists.filter(p=>p.id===_id[0]);
+        let localAssets = [];
+        //updateCurrentPlayList
+        pls.map(p=>{
+            if (p.type!=="main") {
+                localAssets.push({
+                    id: p.assesID,
+                    url: p.asseturl,
+                    duration: p.assetdisplaytime,
+                    description: p.assetdesc
+                });
+            }
+        }); 
+        let audit = JSON.parse(currentlyConfiguredPlayList.audittrail);
+        audit = audit instanceof Array ? audit : [audit];
+        audit.push(JSON.parse(`{"modify":"${new Date().toUTCString()}","modifyby":"${(await Auth.currentUserInfo()).attributes.email}"}`));
+        
+        await API.graphql({ query: updateCurrentPlayList, variables: { input: {
+                id : currentlyConfiguredPlayList.id,
+                assests: JSON.stringify(localAssets),
+                playlist: pls[0].name,
+                audittrail: JSON.stringify(audit) ,
+                _version: currentlyConfiguredPlayList._version
+                }
+            }  
+        });            
+        await getCurrentlyConfiguredPlayList();
     }
 	const savePlayList = async () => {
         if (readyToUpload && playListName && playListDesc) {
@@ -388,7 +437,7 @@ export function PlayListManager() {
                                                                 <td>-</td>
                                                                 <td>
                                                                     <Button onClick={AddAssets} id={"delete_"+playlist.id}>Add Image</Button>
-                                                                    &nbsp;&nbsp;&nbsp;<Button onClick={toggleActive} id={"check_"+playlist.id}>Send to TV</Button>
+                                                                    &nbsp;&nbsp;&nbsp;<Button onClick={makeCurrentPlayList} id={"check_"+playlist.id}>Send to TV</Button>
                                                                 </td>  
                                                             </tr>
                                                             ); 

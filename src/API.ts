@@ -214,6 +214,49 @@ export type DeleteScreensInput = {
   _version?: number | null,
 };
 
+export type CreateCurrentPlayListInput = {
+  id?: string | null,
+  playlist?: string | null,
+  assests?: string | null,
+  audittrail?: string | null,
+  _version?: number | null,
+};
+
+export type ModelCurrentPlayListConditionInput = {
+  playlist?: ModelStringInput | null,
+  assests?: ModelStringInput | null,
+  audittrail?: ModelStringInput | null,
+  and?: Array< ModelCurrentPlayListConditionInput | null > | null,
+  or?: Array< ModelCurrentPlayListConditionInput | null > | null,
+  not?: ModelCurrentPlayListConditionInput | null,
+};
+
+export type CurrentPlayList = {
+  __typename: "CurrentPlayList",
+  id: string,
+  playlist?: string | null,
+  assests?: string | null,
+  audittrail?: string | null,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateCurrentPlayListInput = {
+  id: string,
+  playlist?: string | null,
+  assests?: string | null,
+  audittrail?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteCurrentPlayListInput = {
+  id: string,
+  _version?: number | null,
+};
+
 export type CreatePlaylistsInput = {
   id?: string | null,
   name?: string | null,
@@ -446,6 +489,23 @@ export type ModelScreensFilterInput = {
 export type ModelScreensConnection = {
   __typename: "ModelScreensConnection",
   items:  Array<Screens | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelCurrentPlayListFilterInput = {
+  id?: ModelIDInput | null,
+  playlist?: ModelStringInput | null,
+  assests?: ModelStringInput | null,
+  audittrail?: ModelStringInput | null,
+  and?: Array< ModelCurrentPlayListFilterInput | null > | null,
+  or?: Array< ModelCurrentPlayListFilterInput | null > | null,
+  not?: ModelCurrentPlayListFilterInput | null,
+};
+
+export type ModelCurrentPlayListConnection = {
+  __typename: "ModelCurrentPlayListConnection",
+  items:  Array<CurrentPlayList | null >,
   nextToken?: string | null,
   startedAt?: number | null,
 };
@@ -694,6 +754,66 @@ export type DeleteScreensMutation = {
     name?: string | null,
     location?: string | null,
     active?: string | null,
+    audittrail?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateCurrentPlayListMutationVariables = {
+  input: CreateCurrentPlayListInput,
+  condition?: ModelCurrentPlayListConditionInput | null,
+};
+
+export type CreateCurrentPlayListMutation = {
+  createCurrentPlayList?:  {
+    __typename: "CurrentPlayList",
+    id: string,
+    playlist?: string | null,
+    assests?: string | null,
+    audittrail?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateCurrentPlayListMutationVariables = {
+  input: UpdateCurrentPlayListInput,
+  condition?: ModelCurrentPlayListConditionInput | null,
+};
+
+export type UpdateCurrentPlayListMutation = {
+  updateCurrentPlayList?:  {
+    __typename: "CurrentPlayList",
+    id: string,
+    playlist?: string | null,
+    assests?: string | null,
+    audittrail?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteCurrentPlayListMutationVariables = {
+  input: DeleteCurrentPlayListInput,
+  condition?: ModelCurrentPlayListConditionInput | null,
+};
+
+export type DeleteCurrentPlayListMutation = {
+  deleteCurrentPlayList?:  {
+    __typename: "CurrentPlayList",
+    id: string,
+    playlist?: string | null,
+    assests?: string | null,
     audittrail?: string | null,
     _version: number,
     _deleted?: boolean | null,
@@ -1567,6 +1687,78 @@ export type SyncScreensQuery = {
   } | null,
 };
 
+export type GetCurrentPlayListQueryVariables = {
+  id: string,
+};
+
+export type GetCurrentPlayListQuery = {
+  getCurrentPlayList?:  {
+    __typename: "CurrentPlayList",
+    id: string,
+    playlist?: string | null,
+    assests?: string | null,
+    audittrail?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListCurrentPlayListsQueryVariables = {
+  filter?: ModelCurrentPlayListFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListCurrentPlayListsQuery = {
+  listCurrentPlayLists?:  {
+    __typename: "ModelCurrentPlayListConnection",
+    items:  Array< {
+      __typename: "CurrentPlayList",
+      id: string,
+      playlist?: string | null,
+      assests?: string | null,
+      audittrail?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncCurrentPlayListsQueryVariables = {
+  filter?: ModelCurrentPlayListFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncCurrentPlayListsQuery = {
+  syncCurrentPlayLists?:  {
+    __typename: "ModelCurrentPlayListConnection",
+    items:  Array< {
+      __typename: "CurrentPlayList",
+      id: string,
+      playlist?: string | null,
+      assests?: string | null,
+      audittrail?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type GetPlaylistsQueryVariables = {
   id: string,
 };
@@ -2086,6 +2278,51 @@ export type OnDeleteScreensSubscription = {
     name?: string | null,
     location?: string | null,
     active?: string | null,
+    audittrail?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateCurrentPlayListSubscription = {
+  onCreateCurrentPlayList?:  {
+    __typename: "CurrentPlayList",
+    id: string,
+    playlist?: string | null,
+    assests?: string | null,
+    audittrail?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateCurrentPlayListSubscription = {
+  onUpdateCurrentPlayList?:  {
+    __typename: "CurrentPlayList",
+    id: string,
+    playlist?: string | null,
+    assests?: string | null,
+    audittrail?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteCurrentPlayListSubscription = {
+  onDeleteCurrentPlayList?:  {
+    __typename: "CurrentPlayList",
+    id: string,
+    playlist?: string | null,
+    assests?: string | null,
     audittrail?: string | null,
     _version: number,
     _deleted?: boolean | null,

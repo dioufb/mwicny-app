@@ -191,6 +191,60 @@ export const deleteScreens = /* GraphQL */ `
     }
   }
 `;
+export const createCurrentPlayList = /* GraphQL */ `
+  mutation CreateCurrentPlayList(
+    $input: CreateCurrentPlayListInput!
+    $condition: ModelCurrentPlayListConditionInput
+  ) {
+    createCurrentPlayList(input: $input, condition: $condition) {
+      id
+      playlist
+      assests
+      audittrail
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateCurrentPlayList = /* GraphQL */ `
+  mutation UpdateCurrentPlayList(
+    $input: UpdateCurrentPlayListInput!
+    $condition: ModelCurrentPlayListConditionInput
+  ) {
+    updateCurrentPlayList(input: $input, condition: $condition) {
+      id
+      playlist
+      assests
+      audittrail
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCurrentPlayList = /* GraphQL */ `
+  mutation DeleteCurrentPlayList(
+    $input: DeleteCurrentPlayListInput!
+    $condition: ModelCurrentPlayListConditionInput
+  ) {
+    deleteCurrentPlayList(input: $input, condition: $condition) {
+      id
+      playlist
+      assests
+      audittrail
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createPlaylists = /* GraphQL */ `
   mutation CreatePlaylists(
     $input: CreatePlaylistsInput!

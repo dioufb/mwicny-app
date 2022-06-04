@@ -230,6 +230,77 @@ export const syncScreens = /* GraphQL */ `
     }
   }
 `;
+export const getCurrentPlayList = /* GraphQL */ `
+  query GetCurrentPlayList($id: ID!) {
+    getCurrentPlayList(id: $id) {
+      id
+      playlist
+      assests
+      audittrail
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listCurrentPlayLists = /* GraphQL */ `
+  query ListCurrentPlayLists(
+    $filter: ModelCurrentPlayListFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCurrentPlayLists(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        playlist
+        assests
+        audittrail
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCurrentPlayLists = /* GraphQL */ `
+  query SyncCurrentPlayLists(
+    $filter: ModelCurrentPlayListFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCurrentPlayLists(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        playlist
+        assests
+        audittrail
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getPlaylists = /* GraphQL */ `
   query GetPlaylists($id: ID!) {
     getPlaylists(id: $id) {
