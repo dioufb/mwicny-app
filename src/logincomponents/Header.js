@@ -5,10 +5,18 @@ export function Header() {
     const { tokens } = useTheme();
   
     return (
-      <Image
+<div class="rowheader">
+  <div class="columnheader">
+  <Image
         alt="logo"
         src={logo}
         padding={tokens.space.medium}
-      />
+      />    
+  </div>
+  <div class="columnheader">
+  <span>Monroe-Woodbury Islamic Center</span>
+  </div>
+</div>      
+
     );
   }

@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Members": {
-            "name": "Members",
+        "Prayertimes": {
+            "name": "Prayertimes",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,99 +10,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "firstname": {
-                    "name": "firstname",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "lastname": {
-                    "name": "lastname",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "phone": {
-                    "name": "phone",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "email": {
-                    "name": "email",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "address": {
-                    "name": "address",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "emmergencycontact": {
-                    "name": "emmergencycontact",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "creationdatetime": {
-                    "name": "creationdatetime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "active": {
-                    "name": "active",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "Members",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "read",
-                                    "update"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "PrayerTimes": {
-            "name": "PrayerTimes",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "fadjr": {
-                    "name": "fadjr",
+                "fajr": {
+                    "name": "fajr",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -136,16 +45,16 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "jumah": {
-                    "name": "jumah",
+                "audittrail": {
+                    "name": "audittrail",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "PrayerTimes",
+            "pluralName": "Prayertimes",
             "attributes": [
                 {
                     "type": "model",
@@ -156,22 +65,12 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "ScreenAdmins"
-                                ],
+                                "allow": "public",
                                 "operations": [
-                                    "read",
-                                    "update"
-                                ]
-                            },
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "read",
-                                    "update"
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
                                 ]
                             }
                         ]
@@ -179,8 +78,8 @@ export const schema = {
                 }
             ]
         },
-        "ScreenContent": {
-            "name": "ScreenContent",
+        "Members": {
+            "name": "Members",
             "fields": {
                 "id": {
                     "name": "id",
@@ -189,83 +88,81 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "associationdate": {
-                    "name": "associationdate",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "associatedby": {
-                    "name": "associatedby",
+                "firstname": {
+                    "name": "firstname",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "playlistID": {
-                    "name": "playlistID",
+                "lastname": {
+                    "name": "lastname",
                     "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
-                "screensID": {
-                    "name": "screensID",
+                "email": {
+                    "name": "email",
                     "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "phonenumber": {
+                    "name": "phonenumber",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "address": {
+                    "name": "address",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "preferences": {
+                    "name": "preferences",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "active": {
+                    "name": "active",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "audittrail": {
+                    "name": "audittrail",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
                     "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "ScreenContents",
+            "pluralName": "Members",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
                 },
                 {
-                    "type": "key",
-                    "properties": {
-                        "name": "byPlaylist",
-                        "fields": [
-                            "playlistID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byScreens",
-                        "fields": [
-                            "screensID"
-                        ]
-                    }
-                },
-                {
                     "type": "auth",
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
+                                "allow": "public",
                                 "operations": [
                                     "create",
-                                    "read",
-                                    "update"
-                                ]
-                            },
-                            {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "ScreenAdmins"
-                                ],
-                                "operations": [
-                                    "read",
-                                    "create",
-                                    "update"
+                                    "update",
+                                    "delete",
+                                    "read"
                                 ]
                             }
                         ]
@@ -273,210 +170,8 @@ export const schema = {
                 }
             ]
         },
-        "PlaylistContent": {
-            "name": "PlaylistContent",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "playlistid": {
-                    "name": "playlistid",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "assetid": {
-                    "name": "assetid",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "associationdate": {
-                    "name": "associationdate",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "associatedby": {
-                    "name": "associatedby",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "playlistID": {
-                    "name": "playlistID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "assestss": {
-                    "name": "assestss",
-                    "isArray": true,
-                    "type": {
-                        "model": "AssestsPlaylistContent"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "playlistcontent"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "PlaylistContents",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byPlaylist",
-                        "fields": [
-                            "playlistID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "read",
-                                    "update"
-                                ]
-                            },
-                            {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "ScreenAdmins"
-                                ],
-                                "operations": [
-                                    "read",
-                                    "create",
-                                    "update"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "AssestsPlaylistContent": {
-            "name": "AssestsPlaylistContent",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "assests": {
-                    "name": "assests",
-                    "isArray": false,
-                    "type": {
-                        "model": "Assests"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "assestsID"
-                    }
-                },
-                "playlistcontent": {
-                    "name": "playlistcontent",
-                    "isArray": false,
-                    "type": {
-                        "model": "PlaylistContent"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "playlistcontentID"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "AssestsPlaylistContents",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {
-                        "queries": null
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byAssests",
-                        "fields": [
-                            "assestsID",
-                            "playlistcontentID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byPlaylistContent",
-                        "fields": [
-                            "playlistcontentID",
-                            "assestsID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "ScreenAdmins"
-                                ],
-                                "operations": [
-                                    "read",
-                                    "create",
-                                    "update"
-                                ]
-                            },
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "read",
-                                    "update"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Assests": {
-            "name": "Assests",
+        "Screens": {
+            "name": "Screens",
             "fields": {
                 "id": {
                     "name": "id",
@@ -492,72 +187,30 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "url": {
-                    "name": "url",
+                "location": {
+                    "name": "location",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "uploaddate": {
-                    "name": "uploaddate",
-                    "isArray": false,
-                    "type": "AWSDateTime",
                     "isRequired": false,
                     "attributes": []
                 },
                 "active": {
                     "name": "active",
                     "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "uploadedby": {
-                    "name": "uploadedby",
-                    "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "uploadedfrom": {
-                    "name": "uploadedfrom",
+                "audittrail": {
+                    "name": "audittrail",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
-                },
-                "modifeddate": {
-                    "name": "modifeddate",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "modifyby": {
-                    "name": "modifyby",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "AssestsPlaylistContents": {
-                    "name": "AssestsPlaylistContents",
-                    "isArray": true,
-                    "type": {
-                        "model": "AssestsPlaylistContent"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "assests"
-                    }
                 }
             },
             "syncable": true,
-            "pluralName": "Assests",
+            "pluralName": "Screens",
             "attributes": [
                 {
                     "type": "model",
@@ -568,24 +221,12 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "ScreenAdmins"
-                                ],
-                                "operations": [
-                                    "read",
-                                    "create",
-                                    "update"
-                                ]
-                            },
-                            {
-                                "allow": "private",
+                                "allow": "public",
                                 "operations": [
                                     "create",
-                                    "read",
-                                    "update"
+                                    "update",
+                                    "delete",
+                                    "read"
                                 ]
                             }
                         ]
@@ -593,8 +234,8 @@ export const schema = {
                 }
             ]
         },
-        "Playlist": {
-            "name": "Playlist",
+        "Playlists": {
+            "name": "Playlists",
             "fields": {
                 "id": {
                     "name": "id",
@@ -617,13 +258,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "creationdate": {
-                    "name": "creationdate",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "active": {
                     "name": "active",
                     "isArray": false,
@@ -631,53 +265,25 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "createdby": {
-                    "name": "createdby",
+                "audittrail": {
+                    "name": "audittrail",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
                 },
-                "lastmodifeddate": {
-                    "name": "lastmodifeddate",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "lastmodifiedby": {
-                    "name": "lastmodifiedby",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "PlaylistContents_Rel": {
-                    "name": "PlaylistContents_Rel",
+                "PlaylistsAssets": {
+                    "name": "PlaylistsAssets",
                     "isArray": true,
                     "type": {
-                        "model": "PlaylistContent"
+                        "model": "PlaylistsAssets"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "playlistID"
-                    }
-                },
-                "ScreenContents": {
-                    "name": "ScreenContents",
-                    "isArray": true,
-                    "type": {
-                        "model": "ScreenContent"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "playlistID"
+                        "associatedWith": "playlists"
                     }
                 }
             },
@@ -693,24 +299,12 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "ScreenAdmins"
-                                ],
-                                "operations": [
-                                    "read",
-                                    "create",
-                                    "update"
-                                ]
-                            },
-                            {
-                                "allow": "private",
+                                "allow": "public",
                                 "operations": [
                                     "create",
-                                    "read",
-                                    "update"
+                                    "update",
+                                    "delete",
+                                    "read"
                                 ]
                             }
                         ]
@@ -718,8 +312,8 @@ export const schema = {
                 }
             ]
         },
-        "Screens": {
-            "name": "Screens",
+        "PlaylistsAssets": {
+            "name": "PlaylistsAssets",
             "fields": {
                 "id": {
                     "name": "id",
@@ -728,65 +322,151 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "screen_name": {
-                    "name": "screen_name",
+                "playlists": {
+                    "name": "playlists",
+                    "isArray": false,
+                    "type": {
+                        "model": "Playlists"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "playlistsID"
+                    }
+                },
+                "assets": {
+                    "name": "assets",
+                    "isArray": false,
+                    "type": {
+                        "model": "Assets"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "assetsID"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "PlaylistsAssets",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {
+                        "queries": null
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPlaylists",
+                        "fields": [
+                            "playlistsID",
+                            "assetsID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byAssets",
+                        "fields": [
+                            "assetsID",
+                            "playlistsID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Assets": {
+            "name": "Assets",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "url": {
+                    "name": "url",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "screen_type": {
-                    "name": "screen_type",
+                "active": {
+                    "name": "active",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "scren_interface": {
-                    "name": "scren_interface",
+                "displaytime": {
+                    "name": "displaytime",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
-                "screen_location": {
-                    "name": "screen_location",
+                "audittrail": {
+                    "name": "audittrail",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
                 },
-                "screen_masjid": {
-                    "name": "screen_masjid",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "screen_creationdatetime": {
-                    "name": "screen_creationdatetime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "ScreenContents": {
-                    "name": "ScreenContents",
+                "playlistss": {
+                    "name": "playlistss",
                     "isArray": true,
                     "type": {
-                        "model": "ScreenContent"
+                        "model": "PlaylistsAssets"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "screensID"
+                        "associatedWith": "assets"
                     }
                 }
             },
             "syncable": true,
-            "pluralName": "Screens",
+            "pluralName": "Assets",
             "attributes": [
                 {
                     "type": "model",
@@ -797,24 +477,12 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "ScreenAdmins"
-                                ],
-                                "operations": [
-                                    "read",
-                                    "create",
-                                    "update"
-                                ]
-                            },
-                            {
-                                "allow": "private",
+                                "allow": "public",
                                 "operations": [
                                     "create",
-                                    "read",
-                                    "update"
+                                    "update",
+                                    "delete",
+                                    "read"
                                 ]
                             }
                         ]
@@ -825,5 +493,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "3a9096c5e43b2de686e806b82d629be7"
+    "version": "f40c17e321f2e6fc1851d82e2d0afb17"
 };

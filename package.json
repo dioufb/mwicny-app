@@ -4,10 +4,22 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/ui-react": "^2.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "aws-amplify": "^4.3.24",
+    "bootstrap": "^3.4.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^2.4.0",
+    "react-bootstrap-modal": "^4.2.0",
+    "react-bootstrap-table": "^4.3.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^5.0.0"
+    "react-image-file-resizer": "^0.4.8",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.0",
+    "react-uuid": "^1.0.2",
+    "reactstrap": "^9.0.3",
+    "sass-loader": "^13.0.0"
   },
   "resolutions": {
     "set-value": "^2.0.1",
@@ -27,5 +39,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "sass": "^1.52.1"
+  }
 }

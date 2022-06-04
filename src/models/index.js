@@ -4,15 +4,13 @@ import { schema } from './schema';
 
 
 
-const { Members, PrayerTimes, ScreenContent, PlaylistContent, AssestsPlaylistContent, Assests, Playlist, Screens } = initSchema(schema);
+const { Prayertimes, Members, Screens, Playlists, PlaylistsAssets, Assets } = initSchema(schema);
 
 export {
+  Prayertimes,
   Members,
-  PrayerTimes,
-  ScreenContent,
-  PlaylistContent,
-  AssestsPlaylistContent,
-  Assests,
-  Playlist,
-  Screens
+  Screens,
+  Playlists,
+  PlaylistsAssets,
+  Assets
 };

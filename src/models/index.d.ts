@@ -4,101 +4,69 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class Members {
+export declare class Prayertimes {
   readonly id: string;
-  readonly firstname?: string | null;
-  readonly lastname?: string | null;
-  readonly phone?: string | null;
-  readonly email?: string | null;
-  readonly address?: string | null;
-  readonly emmergencycontact?: string | null;
-  readonly creationdatetime?: string | null;
-  readonly active?: boolean | null;
-  constructor(init: ModelInit<Members>);
-  static copyOf(source: Members, mutator: (draft: MutableModel<Members>) => MutableModel<Members> | void): Members;
-}
-
-export declare class PrayerTimes {
-  readonly id: string;
-  readonly fadjr?: string | null;
+  readonly fajr?: string | null;
   readonly dhur?: string | null;
   readonly asr?: string | null;
   readonly maghrib?: string | null;
   readonly isha?: string | null;
-  readonly jumah?: string | null;
-  constructor(init: ModelInit<PrayerTimes>);
-  static copyOf(source: PrayerTimes, mutator: (draft: MutableModel<PrayerTimes>) => MutableModel<PrayerTimes> | void): PrayerTimes;
+  readonly audittrail?: string | null;
+  constructor(init: ModelInit<Prayertimes>);
+  static copyOf(source: Prayertimes, mutator: (draft: MutableModel<Prayertimes>) => MutableModel<Prayertimes> | void): Prayertimes;
 }
 
-export declare class ScreenContent {
+export declare class Members {
   readonly id: string;
-  readonly associationdate?: string | null;
-  readonly associatedby?: string | null;
-  readonly playlistID: string;
-  readonly screensID: string;
-  constructor(init: ModelInit<ScreenContent>);
-  static copyOf(source: ScreenContent, mutator: (draft: MutableModel<ScreenContent>) => MutableModel<ScreenContent> | void): ScreenContent;
-}
-
-export declare class PlaylistContent {
-  readonly id: string;
-  readonly playlistid?: number | null;
-  readonly assetid?: number | null;
-  readonly associationdate?: string | null;
-  readonly associatedby?: string | null;
-  readonly playlistID: string;
-  readonly assestss?: (AssestsPlaylistContent | null)[] | null;
-  constructor(init: ModelInit<PlaylistContent>);
-  static copyOf(source: PlaylistContent, mutator: (draft: MutableModel<PlaylistContent>) => MutableModel<PlaylistContent> | void): PlaylistContent;
-}
-
-export declare class AssestsPlaylistContent {
-  readonly id: string;
-  readonly assests: Assests;
-  readonly playlistcontent: PlaylistContent;
-  constructor(init: ModelInit<AssestsPlaylistContent>);
-  static copyOf(source: AssestsPlaylistContent, mutator: (draft: MutableModel<AssestsPlaylistContent>) => MutableModel<AssestsPlaylistContent> | void): AssestsPlaylistContent;
-}
-
-export declare class Assests {
-  readonly id: string;
-  readonly name?: string | null;
-  readonly url?: string | null;
-  readonly uploaddate?: string | null;
+  readonly firstname?: string | null;
+  readonly lastname?: string | null;
+  readonly email?: string | null;
+  readonly phonenumber?: string | null;
+  readonly address?: string | null;
+  readonly preferences?: string | null;
   readonly active?: boolean | null;
-  readonly uploadedby?: string | null;
-  readonly uploadedfrom?: string | null;
-  readonly modifeddate?: string | null;
-  readonly modifyby?: string | null;
-  readonly AssestsPlaylistContents?: (AssestsPlaylistContent | null)[] | null;
-  constructor(init: ModelInit<Assests>);
-  static copyOf(source: Assests, mutator: (draft: MutableModel<Assests>) => MutableModel<Assests> | void): Assests;
-}
-
-export declare class Playlist {
-  readonly id: string;
-  readonly name?: string | null;
-  readonly description?: string | null;
-  readonly creationdate?: string | null;
-  readonly active?: boolean | null;
-  readonly createdby?: string | null;
-  readonly lastmodifeddate?: string | null;
-  readonly lastmodifiedby?: string | null;
-  readonly PlaylistContents_Rel?: (PlaylistContent | null)[] | null;
-  readonly ScreenContents?: (ScreenContent | null)[] | null;
-  constructor(init: ModelInit<Playlist>);
-  static copyOf(source: Playlist, mutator: (draft: MutableModel<Playlist>) => MutableModel<Playlist> | void): Playlist;
+  readonly audittrail?: string | null;
+  constructor(init: ModelInit<Members>);
+  static copyOf(source: Members, mutator: (draft: MutableModel<Members>) => MutableModel<Members> | void): Members;
 }
 
 export declare class Screens {
   readonly id: string;
-  readonly screen_name?: string | null;
-  readonly screen_type?: string | null;
-  readonly scren_interface?: string | null;
-  readonly screen_location?: string | null;
-  readonly screen_masjid?: string | null;
-  readonly screen_creationdatetime?: string | null;
-  readonly ScreenContents?: (ScreenContent | null)[] | null;
+  readonly name?: string | null;
+  readonly location?: string | null;
+  readonly active?: string | null;
+  readonly audittrail?: string | null;
   constructor(init: ModelInit<Screens>);
   static copyOf(source: Screens, mutator: (draft: MutableModel<Screens>) => MutableModel<Screens> | void): Screens;
+}
+
+export declare class Playlists {
+  readonly id: string;
+  readonly name?: string | null;
+  readonly description?: string | null;
+  readonly active?: boolean | null;
+  readonly audittrail?: string | null;
+  readonly PlaylistsAssets?: (PlaylistsAssets | null)[] | null;
+  constructor(init: ModelInit<Playlists>);
+  static copyOf(source: Playlists, mutator: (draft: MutableModel<Playlists>) => MutableModel<Playlists> | void): Playlists;
+}
+
+export declare class PlaylistsAssets {
+  readonly id: string;
+  readonly playlists: Playlists;
+  readonly assets: Assets;
+  constructor(init: ModelInit<PlaylistsAssets>);
+  static copyOf(source: PlaylistsAssets, mutator: (draft: MutableModel<PlaylistsAssets>) => MutableModel<PlaylistsAssets> | void): PlaylistsAssets;
+}
+
+export declare class Assets {
+  readonly id: string;
+  readonly url?: string | null;
+  readonly active?: boolean | null;
+  readonly description?: string | null;
+  readonly displaytime?: number | null;
+  readonly audittrail?: string | null;
+  readonly playlistss?: (PlaylistsAssets | null)[] | null;
+  constructor(init: ModelInit<Assets>);
+  static copyOf(source: Assets, mutator: (draft: MutableModel<Assets>) => MutableModel<Assets> | void): Assets;
 }

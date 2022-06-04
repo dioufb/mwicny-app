@@ -1,0 +1,64 @@
+type Prayertimes @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  fajr: String
+  dhur: String
+  asr: String
+  maghrib: String
+  isha: String
+  audittrail: AWSJSON
+}
+
+type Members @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  firstname: String
+  lastname: String
+  email: String
+  phonenumber: String
+  address: String
+  preferences: AWSJSON
+  active: Boolean
+  audittrail: AWSJSON
+}
+
+type Screens @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  location: String
+  active: String
+  audittrail: AWSJSON
+}
+
+type CurrentPlayList @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  playlist: String
+  assests: AWSJSON
+  audittrail: AWSJSON
+}
+
+type Playlists @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  active: Boolean
+  audittrail: AWSJSON
+  PlaylistsAssets: [PlaylistsAssets] @connection(keyName: "byPlaylists", fields: ["id"])
+}
+
+type Assets @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  url: String
+  active: Boolean
+  description: String
+  displaytime: Int
+  audittrail: AWSJSON
+  playlistss: [PlaylistsAssets] @connection(keyName: "byAssets", fields: ["id"])
+}
+
+type PlaylistsAssets @model(queries: null) @key(name: "byPlaylists", fields: ["playlistsID", "assetsID"]) @key(name: "byAssets", fields: ["assetsID", "playlistsID"]) @auth(rules: [{allow: public}, {allow: public}]) {
+  id: ID!
+  playlistsID: ID!
+  assetsID: ID!
+  playlists: Playlists! @connection(fields: ["playlistsID"])
+  assets: Assets! @connection(fields: ["assetsID"])
+}
+ 

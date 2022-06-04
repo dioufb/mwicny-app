@@ -1,0 +1,11 @@
+{
+  "resourceName": "s3fdevmasjidassets",
+  "bucketName": "fdevmasjidassets",
+  "policyUUID": "606e9362",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ]
+}

@@ -39,7 +39,10 @@
   --amplify-border-widths-large: 8px;
 }
 
-
+body {
+  margin: 15px;
+  
+}
 
 .App {
   text-align: center;
@@ -63,6 +66,69 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.columnheader {
+  float: left;
+  width: 50%;
+  font-size: 22px;
+  height: 169px;
+}
+
+
+.columnheader > span { vertical-align: middle; }
+/* Clear floats after the columns */
+.rowheader:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.image-area {
+  border: 2px dashed rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  left: 50%;
+  display: inline-block;
+  position: relative;
+}
+.thumImg {
+  max-height: 75px;
+  min-width: 30px;  
+}
+#imageResult {
+  max-height: 75px;
+  min-width: 30px;
+}
+.image-area::before {
+  content: 'Image preview';
+  color: #000;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.image-area img {
+  z-index: 2;
+  position: relative;
+}
+
+.dialog {
+  box-shadow: 0 8px 6px -6px black;
+  width: 830px;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+}
+
+.image {
+  width: 800px;
 }
 
 @keyframes App-logo-spin {

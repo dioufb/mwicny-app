@@ -11,6 +11,12 @@ export type AmplifyDependentResourcesAttributes = {
             "CreatedSNSRole": "string"
         }
     },
+    "api": {
+        "mwicnyapp": {
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
+        }
+    },
     "function": {
         "mwicnyappPostConfirmation": {
             "Name": "string",
@@ -22,6 +28,12 @@ export type AmplifyDependentResourcesAttributes = {
             "Name": "string",
             "Arn": "string",
             "LambdaExecutionRole": "string",
+            "Region": "string"
+        }
+    },
+    "storage": {
+        "s3fdevmasjidassets": {
+            "BucketName": "string",
             "Region": "string"
         }
     }

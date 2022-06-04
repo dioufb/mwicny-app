@@ -13,8 +13,7 @@
         "signupAttributes": [
           "GIVEN_NAME",
           "FAMILY_NAME",
-          "PHONE_NUMBER",
-          "ADDRESS"
+          "PHONE_NUMBER"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
@@ -35,7 +34,29 @@
       }
     }
   },
-  "api": {},
+  "api": {
+    "mwicnyapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        }
+      }
+    }
+  },
   "function": {
     "mwicnyappPostConfirmation": {
       "build": true,
@@ -46,6 +67,13 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    }
+  },
+  "storage": {
+    "s3fdevmasjidassets": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }
